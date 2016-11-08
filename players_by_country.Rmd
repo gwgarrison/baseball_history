@@ -1,0 +1,22 @@
+---
+title: "Country of Origin for Major League Players"
+output: html_notebook
+---
+
+Choropleth map displaying the country of origin for Major League Baseball players.
+```{r}
+library(readr);library(choroplethr)
+
+players <- read_csv("./data/player.csv")
+```
+
+```{r}
+# get number of players by country
+player_country <- data.frame(table(players$birth_country))
+names(player_country) <- c("region","value")
+player_country$region <- tolower(player_country$region)
+player_country$region[player_country$region == 'can'] <- 'canada'
+player_country$region[player_country$region == 'usa'] <- 'united states of america'
+suppressWarnings(country_choropleth(player_country,"Players by Country of Origin"))
+```
+
