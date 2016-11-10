@@ -23,3 +23,5 @@ ggplot(data = teams,aes(x = zscore,y = w/g)) +
   geom_point(aes(color = ws_win))
        
        
+# big spenders
+big_spenders <- filter(teams,zscore > 2) %>% select(year,league_id,team_id,w,salary_amount,zscore)
